@@ -1,0 +1,28 @@
+.head {
+  padding: 10px;
+  box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(143, 247, 212);
+  border-radius: 20px;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  font-size: 18px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(107, 12, 64);
+}
+
+.link:hover,
+.link:focus {
+  color: rgb(235, 138, 188);
+}
+
+.active {
+  color: rgb(235, 51, 146);
+  text-decoration: none;
+}
