@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMoviesDetails } from "../../service/getMoviesAPI";
 import s from "./MovieDetailsPage.module.css";
@@ -8,6 +8,7 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
 
   const location = useLocation();
+  const backLinkRef = useRef(location.state?.from ?? "/");
 
   useEffect(() => {
     const getData = async () => {
@@ -22,7 +23,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
   return (
     <>
-      <Link to={location.state?.from ?? "/"}>Go back</Link>
+      <Link to={backLinkRef.current}>Go back</Link>
       {movie ? (
         <div className={s.overview}>
           <img

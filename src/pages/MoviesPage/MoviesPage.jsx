@@ -1,6 +1,7 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { searchMovies } from "../../service/getMoviesAPI";
 import { useEffect, useState } from "react";
+import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
   const [query, setQuery] = useState("");
@@ -46,8 +47,19 @@ const MoviesPage = () => {
         />
         <button type="submit">Search</button>
       </form>
-      {isLoading && <p>Loading...</p>}
-      <ul>
+      <MovieList
+        movies={movies}
+        isLoading={isLoading}
+        hasSearched={hasSearched}
+        basePath=""
+      />
+    </div>
+  );
+};
+
+export default MoviesPage;
+
+/* <ul>
         {movies.length === 0 && hasSearched && !isLoading ? (
           <p>Movies couldn't find!</p>
         ) : (
@@ -59,9 +71,4 @@ const MoviesPage = () => {
             </li>
           ))
         )}
-      </ul>
-    </div>
-  );
-};
-
-export default MoviesPage;
+      </ul> */
