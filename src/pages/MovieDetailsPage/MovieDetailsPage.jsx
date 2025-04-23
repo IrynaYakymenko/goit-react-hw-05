@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMoviesDetails } from "../../service/getMoviesAPI";
 import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+
+  const location = useLocation();
+
   useEffect(() => {
     const getData = async () => {
       try {
         const data = await getMoviesDetails(movieId);
         setMovie(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -20,7 +22,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
   return (
     <>
-      <Link to={"/"}>Go back</Link>
+      <Link to={location.state?.from ?? "/"}>Go back</Link>
       {movie ? (
         <div className={s.overview}>
           <img
